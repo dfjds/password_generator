@@ -91,14 +91,29 @@ for i in range(int(cycles)):  # repeats by number of cycles
 
     # changes some characters to symbols
     for chars in part1:  # goes through each character in part1
-        sym_choice = random.randint(0, 9)  # 10 percent cahnce a character will be modified
+        numSym_choice = random.randint(0, 1)  # 50 percent chance that the character will be modified to a number or a symbol
 
-        if sym_choice == 1:
-            # randomly chooses a symbol from the 'symbols list'
-            final_symbol = random.choice(symbols)
-            password.append(final_symbol)
+        # character will be modified as a number
+        if numSym_choice == 0:
+            num_choice = random.randint(0, 4)  # 20 percent chance a character will be modified
+
+            if num_choice == 1:
+                num = random.randint(0, 9)  # Random digit
+                snum = str(num)
+                password.append(snum)
+            else:
+                password.append(chars)
+        
+        # character will be modified as a symbol
         else:
-            password.append(chars)
+            sym_choice = random.randint(0, 4)  # 20 percent chance a character will be modified
+
+            if sym_choice == 1:
+                # randomly chooses a symbol from the 'symbols list'
+                final_symbol = random.choice(symbols)
+                password.append(final_symbol)
+            else:
+                password.append(chars)
 
     # joins the final 'password' list into a string and prints it out
     password = ''.join(password)
